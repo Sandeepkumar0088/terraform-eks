@@ -74,3 +74,5 @@ resource "aws_iam_role_policy_attachment" "node-AmazonEC2ContainerRegistryReadOn
   policy_arn = "arn:aws:iam::aws:policy/AmazonEC2ContainerRegistryReadOnly"
   role       = aws_iam_role.node.name
 }
+
+
