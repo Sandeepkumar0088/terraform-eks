@@ -62,8 +62,8 @@ module "eks" {
     }
   }
 
+
   tags = {
-    Environment = "dev"
     Terraform   = "true"
   }
 }
