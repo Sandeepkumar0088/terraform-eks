@@ -3,7 +3,7 @@ variable "env" {
 }
 
 variable "ami" {
-  default = "ami-09c813fb71547fc4f"
+  default =  "ami-0220d79f3f480ecf5" # "ami-09c813fb71547fc4f"
 }
 
 variable "instance_type" {
@@ -11,7 +11,7 @@ variable "instance_type" {
 }
 
 variable "vpc_security_group_ids" {
-  default = [ "sg-09663d91a4fca31c9" ]
+  default = [ "sg-080ee07db03cf22ab" ]
 }
 
 variable "zone_id" {
