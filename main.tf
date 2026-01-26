@@ -1,11 +1,3 @@
-terraform {
-  required_providers {
-    null = {
-      source  = "hashicorp/null"
-      version = "3.2.4"
-    }
-  }
-}
 resource "aws_eks_cluster" "main" {
   name     = var.env
   role_arn = aws_iam_role.cluster.arn
@@ -33,5 +25,21 @@ resource "aws_eks_node_group" "main" {
 
   update_config {
     max_unavailable = 1
+  }
+}
+
+resource "aws_eks_access_entry" "workstation" {
+  cluster_name      = aws_eks_cluster.main.name
+  principal_arn     = "arn:aws:iam::389841108590:role/sample"
+  type              = "STANDARD"
+}
+
+resource "aws_eks_access_policy_association" "workstation" {
+  cluster_name  = aws_eks_cluster.main.name
+  policy_arn    = "arn:aws:eks::aws:cluster-access-policy/AmazonEKSClusterAdminPolicy"
+  principal_arn = "arn:aws:iam::389841108590:role/sample"
+
+  access_scope {
+    type       = "cluster"
   }
 }
