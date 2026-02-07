@@ -1,3 +1,11 @@
+terraform {
+  required_providers {
+    null = {
+      source  = "hashicorp/null"
+      version = "3.2.4"
+    }
+  }
+}
 resource "aws_eks_cluster" "main" {
   name     = var.env
   role_arn = aws_iam_role.cluster.arn
@@ -15,7 +23,7 @@ resource "aws_eks_node_group" "main" {
   node_group_name = "main"
   node_role_arn   = aws_iam_role.node.arn
   subnet_ids      = ["subnet-0b41036a19ffb50d9", "subnet-03cd379790a054a51"]
-  instance_types  = ["t3.xlarge"]
+  instance_types  = ["c7i-flex.large"]
 
   scaling_config {
     desired_size = 1
@@ -102,7 +110,7 @@ resource "null_resource" "ansible" {
       "sudo dnf install ansible -y",
       #"sudo dnf install python3.13-pip -y",
       #"sudo pip3.11 install ansible",
-      "ansible-pull -i localhost, -U https://github.com/raghudevopsb87/roboshop-ansible-templates.git main.yml -e component=${each.key} -e env=dev"
+      "ansible-pull -i localhost, -U https://github.com/Sandeepkumar0088/roboshop-ansible-templates.git main.yml -e component=${each.key} -e env=dev"
     ]
 
   }
