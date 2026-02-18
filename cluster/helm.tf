@@ -7,14 +7,33 @@ provider "helm" {
 resource "helm_release" "argo-cd" {
   depends_on = [ null_resource.kubeconfig ]
 
-  chart = "argo-cd"
   name  = "argocd"
   repository = "https://argoproj.github.io/argo-helm"
+  chart = "argo-cd"
 
   set = [
     {
       name= "server.service.type"
       value= "LoadBalancer"
+    }
+  ]
+}
+
+resource "helm_release" "prometheus-stack" {
+  depends_on = [ null_resource.kubeconfig ]
+
+  name  = "promstack"
+  repository = "https://prometheus-community.github.io/helm-charts"
+  chart = "kube-prometheus-stack"
+
+  set = [
+    {
+      name= "prometheus.service.type"
+      value= "LoadBalancer"
+    },
+    {
+      name= "grafana.enabled"
+      value= "false"
     }
   ]
 }
