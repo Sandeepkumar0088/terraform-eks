@@ -1,11 +1,4 @@
-terraform {
-  required_providers {
-    aws = {
-      source  = "hashicorp/aws"
-      version = "5.99.1"
-    }
-  }
-}
+
 resource "aws_eks_addon" "pod_identity" {
   cluster_name = aws_eks_cluster.main.name
   addon_name   = "eks-pod-identity-agent"
