@@ -14,17 +14,17 @@ provider "helm" {
 # }
 
 resource "helm_release" "prometheus-stack" {
-  depends_on = [ null_resource.kubeconfig ]
+  depends_on  = [ null_resource.kubeconfig ]
 
-  name  = "promstack"
-  repository = "https://prometheus-community.github.io/helm-charts"
-  chart = "kube-prometheus-stack"
-  values = file("prom-stack-values.yml")
+  name        = "promstack"
+  repository  = "https://prometheus-community.github.io/helm-charts"
+  chart       = "kube-prometheus-stack"
+  values      = [file("prom-stack-values.yml")]
 
   set = [
     {
-      name= "grafana.enabled"
-      value= "false"
+      name  = "grafana.enabled"
+      value = "false"
     }
   ]
 }
