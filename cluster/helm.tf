@@ -19,7 +19,7 @@ resource "helm_release" "prometheus-stack" {
   name  = "promstack"
   repository = "https://prometheus-community.github.io/helm-charts"
   chart = "kube-prometheus-stack"
-  values = [file("prom-stack-values.yml")]
+  values = file("prom-stack-values.yml")
 
   set = [
     {
