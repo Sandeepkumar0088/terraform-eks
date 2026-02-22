@@ -23,6 +23,10 @@ resource "helm_release" "prometheus-stack" {
 
   set = [
     {
+      name  = "prometheus.service.type"
+      value = "LoadBalancer"
+    },
+    {
       name  = "grafana.enabled"
       value = "false"
     }
@@ -38,3 +42,11 @@ resource "helm_release" "nginx-ingress" {
 
 }
 
+# resource "helm_release" "external-dns" {
+#   depends_on = [ null_resource.kubeconfig ]
+#
+#   name  = "external-dns"
+#   repository = "https://kubernetes-sigs.github.io/external-dns"
+#   chart = "external-dns"
+#
+# }
