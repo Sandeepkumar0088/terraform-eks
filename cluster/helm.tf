@@ -56,7 +56,7 @@ resource "helm_release" "prometheus-stack" {
   set_list = [
     {
       name  = "prometheus.ingress.hosts"
-      value = ["prometheus-${var.env}.sandeepkumar.online"]
+      value = ["prometheus-${var.env}.sandeepkumar0088.online"]
     }
   ]
 
