@@ -7,7 +7,7 @@ variable "ami" {
 }
 
 variable "instance_type" {
-  default = "t3.small"
+  default = "t3.micro"
 }
 
 variable "vpc_security_group_ids" {
@@ -15,9 +15,8 @@ variable "vpc_security_group_ids" {
 }
 
 variable "zone_id" {
-  default = "Z057881017RC0RRKVUX8E"
+  default = "Z09354891N46GVLJSDZH0"
 }
-
 variable "components" {
   default = {
     mongodb = ""
