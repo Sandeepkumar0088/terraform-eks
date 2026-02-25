@@ -93,14 +93,14 @@ resource "helm_release" "nginx-ingress" {
  #
  # }
 
-resource "helm_release" "filebeat" {
-  depends_on = [ null_resource.kubeconfig ]
-
-  name  = "filebeat"
-  repository = "https://helm.elastic.co"
-  chart = "filebeat"
-  namespace = "kube-system"
-
-  values = [file("filebeat.yml")]
-
-}
+# resource "helm_release" "filebeat" {
+#   depends_on = [ null_resource.kubeconfig ]
+#
+#   name  = "filebeat"
+#   repository = "https://helm.elastic.co"
+#   chart = "filebeat"
+#   namespace = "kube-system"
+#
+#   values = [file("filebeat.yml")]
+#
+# }
