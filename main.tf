@@ -24,11 +24,16 @@ resource "aws_eks_node_group" "main" {
   node_role_arn   = aws_iam_role.node.arn
   subnet_ids      = ["subnet-0b41036a19ffb50d9", "subnet-03cd379790a054a51"]
   instance_types  = ["c7i-flex.large"]
+  capacity_type   = "SPOT"
 
   scaling_config {
     desired_size = 1
     min_size     = 1
     max_size     = 10
+  }
+
+  tags = {
+    Name = "NODE"
   }
 
   update_config {
