@@ -15,4 +15,4 @@ daemonset:
             - logs_path:
                 logs_path: "/var/log/containers/"
       output.logstash:
-        hosts: "172.31.79.47:5044"
+        hosts: "172.31.69.50:5044"
