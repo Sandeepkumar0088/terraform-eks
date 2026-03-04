@@ -4,32 +4,32 @@ provider "helm" {
   }
 }
 
-resource "helm_release" "argo-cd" {
-  depends_on = [ null_resource.kubeconfig, helm_release.nginx-ingress ]
-
-  name  = "argocd"
-  repository = "https://argoproj.github.io/argo-helm"
-  chart = "argo-cd"
-
-set = [
-  {
-    name  = "server.ingress.enabled"
-    value = "true"
-  },
-  {
-    name  = "server.ingress.ingressClassName"
-    value = "nginx"
-  },
-  {
-    name  = "global.domain"
-    value = "argocd-${var.env}.sandeepkumar0088.online"
-  },
-  {
-    name  = "configs.params.server\\.insecure"
-    value = "true"
-  }
-]
-}
+# resource "helm_release" "argo-cd" {
+#   depends_on = [ null_resource.kubeconfig, helm_release.nginx-ingress ]
+#
+#   name  = "argocd"
+#   repository = "https://argoproj.github.io/argo-helm"
+#   chart = "argo-cd"
+#
+# set = [
+#   {
+#     name  = "server.ingress.enabled"
+#     value = "true"
+#   },
+#   {
+#     name  = "server.ingress.ingressClassName"
+#     value = "nginx"
+#   },
+#   {
+#     name  = "global.domain"
+#     value = "argocd-${var.env}.sandeepkumar0088.online"
+#   },
+#   {
+#     name  = "configs.params.server\\.insecure"
+#     value = "true"
+#   }
+# ]
+# }
 
 resource "helm_release" "prometheus-stack" {
   depends_on  = [ null_resource.kubeconfig, helm_release.nginx-ingress ]
