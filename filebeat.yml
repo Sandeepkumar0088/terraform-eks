@@ -38,4 +38,4 @@ daemonset:
         multiline.negate: true
         multiline.match: after
       output.logstash:
-        hosts: '18.232.186.122:5044'
+        hosts: '172.31.70.153:5044'
