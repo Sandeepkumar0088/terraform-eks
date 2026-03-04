@@ -23,5 +23,6 @@ variable "components" {
     mysql     = ""
     rabbitmq  = ""
     redis     = ""
+    redis     = ""
   }
 }
