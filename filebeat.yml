@@ -37,7 +37,7 @@ daemonset:
                   kubernetes.container.name: "shipping"
 
       output.logstash:
-        hosts: ["172.31.79.1:5044"]
+        hosts: ["172.31.79.204:5044"]
 
 #---
 #daemonset:
