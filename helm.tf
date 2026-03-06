@@ -11,24 +11,24 @@ provider "helm" {
 #   repository = "https://argoproj.github.io/argo-helm"
 #   chart = "argo-cd"
 #
-# set = [
-#   {
-#     name  = "server.ingress.enabled"
-#     value = "true"
-#   },
-#   {
-#     name  = "server.ingress.ingressClassName"
-#     value = "nginx"
-#   },
-#   {
-#     name  = "global.domain"
-#     value = "argocd-${var.env}.sandeepkumar0088.online"
-#   },
-#   {
-#     name  = "configs.params.server\\.insecure"
-#     value = "true"
-#   }
-# ]
+#   set = [
+#     {
+#       name  = "server.ingress.enabled"
+#       value = "true"
+#     },
+#     {
+#       name  = "server.ingress.ingressClassName"
+#       value = "nginx"
+#     },
+#     {
+#       name  = "global.domain"
+#       value = "argocd-${var.env}.sandeepkumar0088.online"
+#     },
+#     {
+#       name  = "configs.params.server\\.insecure"
+#       value = "true"
+#     }
+#   ]
 # }
 
 resource "helm_release" "prometheus-stack" {
@@ -84,23 +84,23 @@ resource "helm_release" "nginx-ingress" {
   ]
 }
 
- # resource "helm_release" "external-dns" {
- #   depends_on = [ null_resource.kubeconfig ]
- #
- #   name  = "external-dns"
- #   repository = "https://kubernetes-sigs.github.io/external-dns"
- #   chart = "external-dns"
- #
- # }
+# resource "helm_release" "external-dns" {
+#   depends_on = [ null_resource.kubeconfig ]
+#
+#   name  = "external-dns"
+#   repository = "https://kubernetes-sigs.github.io/external-dns"
+#   chart = "external-dns"
+#
+# }
 
-resource "helm_release" "filebeat2" {
-  depends_on = [ null_resource.kubeconfig ]
-
-  name  = "filebeat2"
-  repository = "https://helm.elastic.co"
-  chart = "filebeat"
-  namespace = "kube-system"
-
-  values = [file("filebeat.yml")]
-
-}
+# resource "helm_release" "filebeat" {
+#   depends_on = [ null_resource.kubeconfig ]
+#
+#   name  = "filebeat"
+#   repository = "https://helm.elastic.co"
+#   chart = "filebeat"
+#   namespace = "kube-system"
+#
+#   values = [file("filebeat.yml")]
+#
+# }
