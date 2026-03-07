@@ -27,7 +27,7 @@ resource "aws_eks_node_group" "main" {
   capacity_type   = "SPOT"
 
   scaling_config {
-    desired_size = 2
+    desired_size = 1
     min_size     = 1
     max_size     = 10
   }
@@ -66,7 +66,7 @@ resource "null_resource" "kubeconfig" {
   }
 
   provisioner "local-exec" {
-    command = "rm -rf ~/.kube ; aws eks update-kubeconfig --name dev" # kubectl apply -f https://github.com/kubernetes-sigs/metrics-server/releases/latest/download/components.yaml"
+    command = "rm -rf ~/.kube ; aws eks update-kubeconfig --name dev"
   }
 }
 
