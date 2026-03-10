@@ -31,36 +31,36 @@ resource "helm_release" "argo-cd" {
   ]
 }
 
-# resource "helm_release" "prometheus-stack" {
-#   depends_on  = [ null_resource.kubeconfig, helm_release.nginx-ingress ]
-#
-#   name        = "promstack"
-#   repository  = "https://prometheus-community.github.io/helm-charts"
-#   chart       = "kube-prometheus-stack"
-#   values      = [file("prom-stack-values.yml")]
-#
-#   set = [
-#     {
-#       name  = "grafana.enabled"
-#       value = "false"
-#     },
-#     {
-#       name  = "prometheus.ingress.enabled"
-#       value = "true"
-#     },
-#     {
-#       name  = "prometheus.ingress.ingressClassName"
-#       value = "nginx"
-#     }
-#   ]
-#   set_list = [
-#     {
-#       name  = "prometheus.ingress.hosts"
-#       value = ["prometheus-${var.env}.sandeepkumar0088.online"]
-#     }
-#   ]
-#
-# }
+resource "helm_release" "prometheus-stack" {
+  depends_on  = [ null_resource.kubeconfig, helm_release.nginx-ingress ]
+
+  name        = "promstack"
+  repository  = "https://prometheus-community.github.io/helm-charts"
+  chart       = "kube-prometheus-stack"
+  values      = [file("prom-stack-values.yml")]
+
+  set = [
+    {
+      name  = "grafana.enabled"
+      value = "false"
+    },
+    {
+      name  = "prometheus.ingress.enabled"
+      value = "true"
+    },
+    {
+      name  = "prometheus.ingress.ingressClassName"
+      value = "nginx"
+    }
+  ]
+  set_list = [
+    {
+      name  = "prometheus.ingress.hosts"
+      value = ["prometheus-${var.env}.sandeepkumar0088.online"]
+    }
+  ]
+
+}
 
 resource "helm_release" "nginx-ingress" {
   depends_on = [ null_resource.kubeconfig ]
