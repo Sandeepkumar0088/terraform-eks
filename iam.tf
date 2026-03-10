@@ -76,7 +76,7 @@ resource "aws_iam_role_policy_attachment" "node-AmazonEC2ContainerRegistryReadOn
 }
 
 
-## External-DNS
+# External-DNS
 resource "aws_iam_role" "external-dns" {
   name = "${var.env}-pod-external-dns-role"
 
