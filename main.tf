@@ -66,12 +66,7 @@ resource "null_resource" "kubeconfig" {
   }
 
   provisioner "local-exec" {
-    command = <<EOT
-      rm -rf ~/.kube
-      aws eks update-kubeconfig --name dev
-
-
-      EOT
+    command = "rm -rf ~/.kube ; aws eks update-kubeconfig --name dev"
   }
 }
 # kubectl get nodes
