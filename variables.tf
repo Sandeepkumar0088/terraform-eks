@@ -19,9 +19,9 @@ variable "zone_id" {
 }
 variable "components" {
   default = {
-    mongodb   = "t3.micro"
+    mongodb   = "t3.small"
     mysql     = "t3.small"
-    rabbitmq  = "t3.micro"
-    redis     = "t3.micro"
+    rabbitmq  = "t3.small"
+    redis     = "t3.small"
   }
 }
