@@ -6,10 +6,6 @@ variable "ami" {
   default =  "ami-0220d79f3f480ecf5" #
 }
 
-variable "instance_type" {
-  default = "t3.micro"
-}
-
 variable "vpc_security_group_ids" {
   default = [ "sg-080ee07db03cf22ab" ]
 }
@@ -19,9 +15,9 @@ variable "zone_id" {
 }
 variable "components" {
   default = {
-    mongodb   = "t3.micro"
-    mysql     = "t3.micro"
-    rabbitmq  = "t3.micro"
-    redis     = "t3.micro"
+    mongodb   = "t3.small"
+    mysql     = "t3.small"
+    rabbitmq  = "t3.small"
+    redis     = "t3.small"
   }
 }
