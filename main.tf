@@ -28,7 +28,7 @@ resource "aws_eks_node_group" "main" {
   capacity_type   = "SPOT"
 
   scaling_config {
-    desired_size = 2
+    desired_size = 3
     min_size     = 1
     max_size     = 10
   }
@@ -80,11 +80,11 @@ resource "null_resource" "kubeconfig" {
 ### DB EC2 Instances.
 
 resource "aws_instance" "instances" {
-  for_each      = var.components
+  for_each                = var.components
 
-  ami           = var.ami
-  instance_type = each.value
-  vpc_security_group_ids = var.vpc_security_group_ids
+  ami                     = var.ami
+  instance_type           = each.value
+  vpc_security_group_ids  = var.vpc_security_group_ids
 
   tags = {
     Name = each.key
@@ -94,11 +94,11 @@ resource "aws_instance" "instances" {
 
 resource "aws_route53_record" "a-records" {
   for_each      = var.components
-  zone_id = var.zone_id
-  name    = "${each.key}-dev"
-  type    = "A"
-  ttl     = 30
-  records = [aws_instance.instances[each.key].private_ip]
+  zone_id       = var.zone_id
+  name          = "${each.key}-dev"
+  type          = "A"
+  ttl           = 30
+  records       = [aws_instance.instances[each.key].private_ip]
 }
 
 resource "null_resource" "ansible" {
