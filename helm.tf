@@ -86,35 +86,35 @@ resource "helm_release" "nginx-ingress" {
 
 
 
-# resource "helm_release" "filebeat" {
-#   depends_on = [ null_resource.kubeconfig ]
-#
-#   name  = "filebeat"
-#   repository = "https://helm.elastic.co"
-#   chart = "filebeat"
-#   namespace = "kube-system"
-#
-#   values = [file("filebeat.yml")]
-#
-# }
+resource "helm_release" "filebeat" {
+  depends_on = [ null_resource.kubeconfig ]
+
+  name  = "filebeat"
+  repository = "https://helm.elastic.co"
+  chart = "filebeat"
+  namespace = "kube-system"
+
+  values = [file("filebeat.yml")]
+
+}
 
 # Cluster Autoscaler
-resource "helm_release" "cluster-autoscaler" {
-  depends_on       = [null_resource.kubeconfig, aws_eks_pod_identity_association.cluster-autoscaler]
-  name             = "cluster-autoscaler"
-  repository       = "https://kubernetes.github.io/autoscaler"
-  chart            = "cluster-autoscaler"
-  namespace        = "default"
-  create_namespace = true
-
-  set = [
-    {
-      name  = "autoDiscovery.clusterName"
-      value = var.env
-    },
-    {
-      name  = "awsRegion"
-      value = "us-east-1"
-    }
-  ]
-}
+# resource "helm_release" "cluster-autoscaler" {
+#   depends_on       = [null_resource.kubeconfig, aws_eks_pod_identity_association.cluster-autoscaler]
+#   name             = "cluster-autoscaler"
+#   repository       = "https://kubernetes.github.io/autoscaler"
+#   chart            = "cluster-autoscaler"
+#   namespace        = "default"
+#   create_namespace = true
+#
+#   set = [
+#     {
+#       name  = "autoDiscovery.clusterName"
+#       value = var.env
+#     },
+#     {
+#       name  = "awsRegion"
+#       value = "us-east-1"
+#     }
+#   ]
+# }
