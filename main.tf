@@ -44,14 +44,14 @@ resource "aws_eks_node_group" "main" {
 
 resource "aws_eks_access_entry" "workstation" {
   cluster_name      = aws_eks_cluster.main.name
-  principal_arn     = "arn:aws:iam::389841108590:role/workstation-role"
+  principal_arn     = "arn:aws:iam::012751250483:role/workstation-role"
   type              = "STANDARD"
 }
 
 resource "aws_eks_access_policy_association" "workstation" {
   cluster_name  = aws_eks_cluster.main.name
-  policy_arn    = "arn:aws:eks::aws:cluster-access-policy/AmazonEKSClusterAdminPolicy"
-  principal_arn = "arn:aws:iam::389841108590:role/workstation-role"
+  policy_arn    = "arn:aws:iam::aws:policy/AmazonEKSClusterPolicy"
+  principal_arn = "arn:aws:iam::012751250483:role/workstation-role"
 
   access_scope {
     type       = "cluster"
@@ -67,11 +67,7 @@ resource "null_resource" "kubeconfig" {
   }
 
   provisioner "local-exec" {
-    command = <<EOT
-    rm -rf ~/.kube
-    aws eks update-kubeconfig --name dev
-    kubectl apply -f https://github.com/kubernetes-sigs/metrics-server/releases/latest/download/components.yaml
-  EOT
+    command = "rm -rf ~/.kube ; aws eks update-kubeconfig --name dev ; kubectl apply -f https://github.com/kubernetes-sigs/metrics-server/releases/latest/download/components.yaml"
   }
 }
 
