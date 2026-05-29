@@ -67,7 +67,20 @@ resource "null_resource" "kubeconfig" {
   }
 
   provisioner "local-exec" {
-    command = "rm -rf ~/.kube ; aws eks update-kubeconfig --name dev ; kubectl apply -f https://github.com/kubernetes-sigs/metrics-server/releases/latest/download/components.yaml"
+    command = <<EOF
+    rm -rf ~/.kube
+
+    aws eks update-kubeconfig \
+      --region us-east-1 \
+      --name dev
+
+    kubectl config current-context
+
+    kubectl get nodes
+
+    kubectl apply --validate=false \
+      -f https://github.com/kubernetes-sigs/metrics-server/releases/latest/download/components.yaml
+  EOF
   }
 }
 
