@@ -71,6 +71,7 @@ resource "null_resource" "kubeconfig" {
   }
 }
 
+
 # rm -rf ~/.kube
 # aws eks update-kubeconfig --name dev
 # kubectl get nodes
