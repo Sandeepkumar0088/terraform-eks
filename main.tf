@@ -50,8 +50,10 @@ resource "aws_eks_access_entry" "workstation" {
 
 resource "aws_eks_access_policy_association" "workstation" {
   cluster_name  = aws_eks_cluster.main.name
-  policy_arn    = "arn:aws:iam::aws:policy/AmazonEKSClusterPolicy"
+  policy_arn    = "arn:aws:eks::aws:cluster-access-policy/AmazonEKSClusterAdminPolicy"
   principal_arn = "arn:aws:iam::012751250483:role/workstation-role"
+
+  # 012751250483
 
   access_scope {
     type       = "cluster"
