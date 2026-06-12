@@ -11,7 +11,7 @@ variable "vpc_security_group_ids" {
 }
 
 variable "zone_id" {
-  default = "Z03369982K8R0OHQ4XJJV"
+  default = "Z03809721NR4CZZKYMR0T"
 }
 variable "components" {
   default = {
