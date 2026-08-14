@@ -114,7 +114,7 @@ resource "aws_iam_role" "external-dns" {
 }
 
 # Cluster Autoscaler
-
+#
 # resource "aws_iam_role" "cluster-autoscaler" {
 #   name = "${var.env}-cluster-autoscaler-role"
 #
